@@ -136,6 +136,13 @@ flash_fastboot()
 				return $?
 			fi
 		fi
+		if [ "$DEVICE_NAME" = "dolphin" ]; then
+			fastboot_flash_image cache &&
+			fastboot_flash_image prodnv
+			if [ $? -ne 0 ]; then
+				return $?
+			fi
+		fi
 		fastboot_flash_image userdata &&
 		([ ! -e out/target/product/$DEVICE/boot.img ] ||
 		fastboot_flash_image boot) &&
@@ -333,7 +340,7 @@ case "$DEVICE" in
 	exit $?
 	;;
 
-"flame"|"otoro"|"unagi"|"keon"|"peak"|"inari"|"sp8810ea"|"wasabi"|"flatfish")
+"flame"|"otoro"|"unagi"|"keon"|"peak"|"inari"|"sp8810ea"|"wasabi"|"flatfish"|"scx15_sp7715ga")
 	flash_fastboot nounlock $PROJECT
 	;;
 
