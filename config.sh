@@ -33,7 +33,7 @@ esac
 #GITREPO=${GITREPO:-"git://github.com/mozilla-b2g/b2g-manifest"}
 #BRANCH=${BRANCH:-master}
 GITREPO=${GITREPO:-"git://github.com/Seinlin/b2g-manifest"}
-BRANCH=${BRANCH:-7715}
+BRANCH=${BRANCH:-v1.4}
 
 while [ $# -ge 1 ]; do
 	case $1 in
