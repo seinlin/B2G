@@ -149,7 +149,7 @@ case "$1" in
 
 "dolphin")
   echo DEVICE=scx15_sp7715ga >> .tmp-config &&
-  echo LUNCH=scx15_sp7715gabase-userdebug >> .tmp-config &&
+  echo LUNCH==scx15_sp7715gaplus-userdebug >> .tmp-config &&
 	repo_sync $1
   ;;
 
