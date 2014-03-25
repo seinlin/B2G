@@ -133,16 +133,9 @@ flash_fastboot()
 		if [ "$DEVICE" == "flatfish" ]; then
 			DATA_PART_NAME="data"
 		fi
-		if [ "$DEVICE" != "helix" ]; then
+		if [ "$DEVICE" != "helix" -a "$DEVICE_NAME" != "dolphin" ]; then
 			run_fastboot $VERB cache &&
 			run_fastboot $VERB $DATA_PART_NAME
-			if [ $? -ne 0 ]; then
-				return $?
-			fi
-		fi
-		if [ "$DEVICE_NAME" = "dolphin" ]; then
-			fastboot_flash_image cache &&
-			fastboot_flash_image prodnv
 			if [ $? -ne 0 ]; then
 				return $?
 			fi
