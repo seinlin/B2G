@@ -52,11 +52,7 @@ fastboot_flash_image()
 	if [ "$DEVICE" == "flatfish" ] && [ "$PARTITION" == "userdata" ]; then
 		PARTITION="data"
 	fi
-  if [ "$PARTITION" != "boot" -a "$DEVICE_NAME" == "dolphin" ]; then
-    imgpath="out/target/product/$DEVICE/$1_b256k_p4k.img"
-  else
-    imgpath="out/target/product/$DEVICE/$1.img"
-  fi
+  imgpath="out/target/product/$DEVICE/$1.img"
 	out="$(run_fastboot flash "$PARTITION" "$imgpath" 2>&1)"
 	rv="$?"
 	echo "$out"

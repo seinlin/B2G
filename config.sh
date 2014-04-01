@@ -32,7 +32,7 @@ esac
 
 #GITREPO=${GITREPO:-"git://github.com/mozilla-b2g/b2g-manifest"}
 #BRANCH=${BRANCH:-master}
-GITREPO=${GITREPO:-"git://github.com/Seinlin/b2g-manifest"}
+GITREPO=${GITREPO:-"git@github.com:Seinlin/platform_build.git"}
 BRANCH=${BRANCH:-v1.4}
 
 while [ $# -ge 1 ]; do
