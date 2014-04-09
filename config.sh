@@ -32,7 +32,7 @@ esac
 
 #GITREPO=${GITREPO:-"git://github.com/mozilla-b2g/b2g-manifest"}
 #BRANCH=${BRANCH:-master}
-GITREPO=${GITREPO:-"git@github.com:Seinlin/platform_build.git"}
+GITREPO=${GITREPO:-"git@github.com:Seinlin/b2g-manifest.git"}
 BRANCH=${BRANCH:-v1.4}
 
 while [ $# -ge 1 ]; do
@@ -149,7 +149,7 @@ case "$1" in
 
 "dolphin")
   echo DEVICE=scx15_sp7715ga >> .tmp-config &&
-  echo LUNCH=scx15_sp7715gaplus-userdebug >> .tmp-config &&
+  echo PRODUCT_NAME=scx15_sp7715gaplus >> .tmp-config &&
 	repo_sync $1
   ;;
 
