@@ -30,8 +30,10 @@ case `uname` in
 	exit -1
 esac
 
-GITREPO=${GITREPO:-"git://github.com/mozilla-b2g/b2g-manifest"}
-BRANCH=${BRANCH:-master}
+#GITREPO=${GITREPO:-"git://github.com/mozilla-b2g/b2g-manifest"}
+#BRANCH=${BRANCH:-master}
+GITREPO=${GITREPO:-"https://github.com/Seinlin/b2g-manifest.git"}
+BRANCH=${BRANCH:-v1.4}
 
 while [ $# -ge 1 ]; do
 	case $1 in
@@ -151,6 +153,12 @@ case "$1" in
 	repo_sync $1
 	;;
 
+"shark")
+	echo DEVICE=scx35_sp7730ga >> .tmp-config &&
+	echo PRODUCT_NAME=scx35_sp7730gaplus >> .tmp-config &&
+	repo_sync $1
+	;;
+
 "pandaboard")
 	echo DEVICE=panda >> .tmp-config &&
 	repo_sync $1
@@ -199,6 +207,7 @@ case "$1" in
 	echo - tarako
 	echo - tara
 	echo - dolphin
+  echo - shark
 	echo - pandaboard
 	echo - flatfish
 	echo - flame
