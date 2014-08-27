@@ -139,7 +139,7 @@ flash_fastboot()
 			DATA_PART_NAME="data"
 		fi
 		# helix/dolphin don't support erase command in fastboot mode.
-		if [ "$DEVICE" != "helix" -a "$DEVICE_NAME" != "dolphin" ]; then
+		if [ "$DEVICE" != "helix" -a "$DEVICE_NAME" != "dolphin" -a "$DEVICE_NAME" != "shark" ]; then
 			run_fastboot $VERB cache &&
 			run_fastboot $VERB $DATA_PART_NAME
 			if [ $? -ne 0 ]; then
@@ -367,7 +367,7 @@ case "$DEVICE" in
 	exit $?
 	;;
 
-"flame"|"otoro"|"unagi"|"keon"|"peak"|"inari"|"sp8810ea"|"wasabi"|"flatfish"|"scx15_sp7715ga")
+"flame"|"otoro"|"unagi"|"keon"|"peak"|"inari"|"sp8810ea"|"wasabi"|"flatfish"|"scx15_sp7715ga"|"scx35_sp7730ec")
 	flash_fastboot nounlock $PROJECT
 	;;
 

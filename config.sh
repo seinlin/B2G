@@ -151,6 +151,12 @@ case "$1" in
 	repo_sync $1
 	;;
 
+"shark")
+	echo DEVICE=scx35_sp7730ec >> .tmp-config &&
+	echo PRODUCT_NAME=scx35_sp7730ecplus >> .tmp-config &&
+	repo_sync dolphin
+	;;
+
 "pandaboard")
 	echo DEVICE=panda >> .tmp-config &&
 	repo_sync $1
