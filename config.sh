@@ -85,19 +85,14 @@ case "$1" in
 	repo_sync $1
 	;;
 
-"nexus-4")
+"nexus-4"|"nexus-4-kk")
 	echo DEVICE=mako >> .tmp-config &&
-	repo_sync nexus-4
+	repo_sync $1
 	;;
 
-"nexus-4-kk")
-	echo DEVICE=mako >> .tmp-config &&
-	repo_sync nexus-4-kk
-	;;
-
-"nexus-5")
+"nexus-5"|"nexus-5-l")
   echo DEVICE=hammerhead >> .tmp-config &&
-  repo_sync nexus-5
+  repo_sync $1
   ;;
 
 "optimus-l5")
@@ -194,6 +189,7 @@ case "$1" in
 	echo - nexus-4
 	echo - nexus-4-kk
 	echo - nexus-5
+	echo - nexus-5-l
 	echo - nexus-s
 	echo - nexus-s-4g
 	echo - flo "(Nexus 7 2013)"
