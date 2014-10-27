@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import argparse, bisect, json, os, subprocess, sys
 import os.path, re, requests
@@ -74,8 +74,8 @@ class Library:
       if self.verbose:
         print "Address %s maps to library '%s' offset 0x%08x" % (address_str, self.host_name, lib_address)
       # Fix up addresses from stack frames; they're for the insn after
-      # the call, which might be different function thanks to inlining:
-      adj_address = (lib_address & ~1) - 1
+      # the call, which might be a different function thanks to inlining:
+      adj_address = max(0, (lib_address & ~1) - 1)
       args.append("0x%08x" % adj_address)
       nm_args.append("0x%08x" % adj_address)
     # Calling addr2line will return 2 lines for each address. The output will be something
