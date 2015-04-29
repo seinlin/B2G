@@ -176,14 +176,14 @@ case "$1" in
 	repo_sync $1
 	;;
 
-"shinano")
+"shinano"|"shinano-l")
 	echo PRODUCT_NAME=shinano >> .tmp-config &&
-	repo_sync shinano
+	repo_sync $1
 	;;
 
-"aries")
+"aries"|"aries-l")
 	echo PRODUCT_NAME=aries >> .tmp-config &&
-	repo_sync aries
+	repo_sync $1
 	;;
 
 *)
@@ -218,7 +218,9 @@ case "$1" in
 	echo - flame-kk
 	echo - rpi "(Revision B)"
 	echo - shinano
+	echo - shinano-l
 	echo - aries
+	echo - aries-l
 	echo - emulator
 	echo - emulator-jb
 	echo - emulator-kk
