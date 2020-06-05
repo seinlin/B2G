@@ -30,7 +30,7 @@ case `uname` in
 	exit -1
 esac
 
-GITREPO=${GITREPO:-"git://github.com/kaiostech/manifests"}
+GITREPO=${GITREPO:-"git://github.com/b2gos/manifests"}
 BRANCH=${BRANCH:-master}
 
 while [ $# -ge 1 ]; do
@@ -71,7 +71,7 @@ if [ -n "$2" ]; then
 fi
 
 echo MAKE_FLAGS=-j$((CORE_COUNT + 2)) > .tmp-config
-echo GECKO_OBJDIR=$PWD/objdir-gecko >> .tmp-config
+echo GECKO_OBJDIR=$PWD/objdir-gecko-\$PRODUCT_NAME >> .tmp-config
 echo DEVICE_NAME=$1 >> .tmp-config
 
 case "$1" in
@@ -85,6 +85,12 @@ case "$1" in
         echo TARGET_NAME=generic_x86_64 >> .tmp-config &&
 	echo BINSUFFIX=64 >> .tmp-config &&
 	repo_sync emulator-10
+	;;
+"sargo")
+	echo PRODUCT_NAME=aosp_sargo >> .tmp-config &&
+	echo TARGET_NAME=sargo >> .tmp-config &&
+	echo BINSUFFIX=64 >> .tmp-config &&
+	repo_sync $1
 	;;
 *)
 	echo "Usage: $0 [-cdflnq] [-j <jobs>] [--force-sync] (device name)"
