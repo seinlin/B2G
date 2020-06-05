@@ -102,7 +102,7 @@ case "$1" in
 	;;
 esac
 
-echo GECKO_OBJDIR=$PWD/objdir-gecko-$PRODUCT_NAME >> .tmp-config
+echo GECKO_OBJDIR=$PWD/objdir-gecko-\$PRODUCT_NAME >> .tmp-config
 
 if [ $? -ne 0 ]; then
 	echo Configuration failed
