@@ -44,6 +44,10 @@ case $DEVICE in
     aosp_x86_64)
         BINSUFFIX=64
         ;;
+    aosp_sargo)
+        BINSUFFIX=64
+        TARGET_ARCH=arm64
+        ;;
     *)
         BINSUFFIX=
         ;;

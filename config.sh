@@ -86,6 +86,12 @@ case "$1" in
 	echo BINSUFFIX=64 >> .tmp-config &&
 	repo_sync emulator-10
 	;;
+"sargo")
+	echo PRODUCT_NAME=aosp_sargo >> .tmp-config &&
+	echo TARGET_NAME=sargo >> .tmp-config &&
+	echo BINSUFFIX=64 >> .tmp-config &&
+	repo_sync $1
+	;;
 *)
 	echo "Usage: $0 [-cdflnq] [-j <jobs>] [--force-sync] (device name)"
 	echo "Flags are passed through to |./repo sync|."
