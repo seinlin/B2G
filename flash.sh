@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -xe
+
 . load-config.sh
 test -f $DEVICE_DIR/flash.sh && . $DEVICE_DIR/flash.sh
 
@@ -285,7 +287,7 @@ delete_single_variant_persist()
 flash_gecko()
 {
 	delete_extra_gecko_files_on_device &&
-	run_adb push $GECKO_OBJDIR/dist/b2g /system/b2g &&
+	run_adb push $GECKO_OBJDIR/dist/b2g /system &&
 	return 0
 }
 
