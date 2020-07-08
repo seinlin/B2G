@@ -48,6 +48,9 @@ case $DEVICE in
         BINSUFFIX=64
         TARGET_ARCH=arm64
         ;;
+    b2g_onyx)
+        TARGET_ARCH=arm
+        ;;	      
     *)
         BINSUFFIX=
         ;;

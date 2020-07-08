@@ -50,6 +50,22 @@ Discuss with Developers:
 
 At boot time, you might need `adb shell setenforce 0` for B2G to boot (flash_sargo.sh does it).
 
+## OnePlus X (onyx)
+
+1. Fetch the code: `REPO_INIT_FLAGS="--depth=1" ./config.sh onyx`
+2. Setup your environment to fetch the custom NDK: `export LOCAL_NDK_BASE_URL='ftp://ftp.kaiostech.com/ndk/android-ndk'`
+3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 4 (Android Geckoview).
+4. Apply patch: `./patcher/patcher.sh`
+5. Build: `./build.sh`
+6. Boot the Android system, go to settings, enable developer mode and enable OEM Unlock
+7. Reboot into fastboot mode
+8. Flash:
+   - `fastboot erase userdata`
+   - `fastboot flash system $gonk_path/system.img`
+   - `fastboot flash boot $gonk_path/boot.img`
+  
+If need to output a zip ROM file, you can use `./build.sh dist DIST_DIR=dist_output` instead of `./build.sh` in step 5.
+
 # Re-building your own NDK
 
 Because it's using a different c++ namespace than the AOSP base, we can't use the prebuilt NDK from Google. If you can't use the one built by KaiOS, here are the steps to build your own:
