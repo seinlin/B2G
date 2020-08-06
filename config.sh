@@ -103,8 +103,8 @@ case "$1" in
 	echo Valid devices to configure are:
 	echo - emulator-10-arm
 	echo - emulator-10-x86_64
-	echo - sargo (Google Pixel 3a)
-	echo - onyx  (OnePlus X)
+	echo - sargo \(Google Pixel 3a\)
+	echo - onyx  \(OnePlus X\)
 	exit -1
 	;;
 esac
