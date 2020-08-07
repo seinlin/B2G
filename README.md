@@ -36,17 +36,15 @@ Discuss with Developers:
 
 ## Google Pixel 3a (sargo)
 
-1. Fetch the code: `REPO_INIT_FLAGS="--depth=1" ./config.sh sargo`
-2. Download and extract Google and Qualcomm blobs QQ2A.200501.001.B2 from https://developers.google.com/android/drivers#bonitoqq2a.200501.001.b2 
-3. Download, extract and flash Android Factory image QQ2A.200501.001.B2 from https://dl.google.com/dl/android/aosp/sargo-qq2a.200501.001.b2-factory-cc3250a0.zip
-4. Setup your environment to fetch the custom NDK: `export LOCAL_NDK_BASE_URL='ftp://ftp.kaiostech.com/ndk/android-ndk'`
-5. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 4 (Android Geckoview).
-6. Build: `./build.sh`
-7. Boot the Android system, go to settings, enable developer mode and enable OEM Unlock
-8. Reboot into fastboot mode and issue
+1. Fetch the code: `REPO_INIT_FLAGS="--depth=1" ./config.sh sargo`. This will also download the binary blobs for the device if they are not already present.
+2. Setup your environment to fetch the custom NDK: `export LOCAL_NDK_BASE_URL='ftp://ftp.kaiostech.com/ndk/android-ndk'`
+3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 4 (Android Geckoview).
+4. Build: `./build.sh`
+5. Boot the Android system, go to settings, enable developer mode and enable OEM Unlock
+6. Reboot into fastboot mode and issue
    - `fastboot flashing unlock`
    - `fastboot flashing unlock_critical`
-9. Flash: `./flash_sargo.sh`
+7. Flash: `./flash_sargo.sh`
 
 At boot time, you might need `adb shell setenforce 0` for B2G to boot (flash_sargo.sh does it).
 

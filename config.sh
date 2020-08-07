@@ -86,6 +86,7 @@ case "$1" in
 	repo_sync emulator-10
 	;;
 "sargo")
+	./download_sargo_vendor.sh &&
 	echo PRODUCT_NAME=aosp_sargo >> .tmp-config &&
 	echo TARGET_NAME=sargo >> .tmp-config &&
 	echo BINSUFFIX=64 >> .tmp-config &&
