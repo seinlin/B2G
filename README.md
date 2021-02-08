@@ -28,7 +28,7 @@ Discuss with Developers:
 
 1. Fetch the code: `REPO_INIT_FLAGS="--depth=1" ./config.sh emulator-10-x86_64`
 2. Setup your environment to fetch the custom NDK: `export LOCAL_NDK_BASE_URL='ftp://ftp.kaiostech.com/ndk/android-ndk'`
-3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 4 (Android Geckoview).
+3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 1 (Boot2Gecko).
 4. Build: `./build.sh`
 5. Run the emulator: `source build/envsetup.sh && lunch aosp_arm-userdebug && emulator -writable-system -selinux permissive`
 
@@ -38,7 +38,7 @@ Discuss with Developers:
 
 1. Fetch the code: `REPO_INIT_FLAGS="--depth=1" ./config.sh sargo`. This will also download the binary blobs for the device if they are not already present.
 2. Setup your environment to fetch the custom NDK: `export LOCAL_NDK_BASE_URL='ftp://ftp.kaiostech.com/ndk/android-ndk'`
-3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 4 (Android Geckoview).
+3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 1 (Boot2Gecko).
 4. Build: `./build.sh`
 5. Boot the Android system, go to settings, enable developer mode and enable OEM Unlock
 6. Reboot into fastboot mode and issue
@@ -52,7 +52,7 @@ At boot time, you might need `adb shell setenforce 0` for B2G to boot (flash_sar
 
 1. Fetch the code: `REPO_INIT_FLAGS="--depth=1" ./config.sh onyx`
 2. Setup your environment to fetch the custom NDK: `export LOCAL_NDK_BASE_URL='ftp://ftp.kaiostech.com/ndk/android-ndk'`
-3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 4 (Android Geckoview).
+3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 1 (Boot2Gecko).
 4. Apply patch: `./patcher/patcher.sh`
 5. Build: `./build.sh`
 6. Boot the Android system, go to settings, enable developer mode and enable OEM Unlock
