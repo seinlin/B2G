@@ -77,7 +77,7 @@ More [detail](https://github.com/phhusson/treble_experimentations/wiki) of which
    - `gsi_arm_ab` (arm partitionA/B)
    - `gsi_arm_a` (arm partitionA)
 
-5. Flash: [click it](https://source.android.google.com/setup/build/gsi#flashing-gsis)
+5. Flash: Follow the steps from [click it](https://source.android.com/setup/build/gsi#flashing-gsis) or use the `./create_gsi_dist.sh` script to create a self-contained archive with the image and flashing tools.
 
 # Re-building your own NDK
 
