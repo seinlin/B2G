@@ -83,11 +83,69 @@ More [detail](https://github.com/phhusson/treble_experimentations/wiki) of which
 
 Because it's using a different c++ namespace than the AOSP base, we can't use the prebuilt NDK from Google. If you can't use the one built by KaiOS, here are the steps to build your own:
 1. Download the ndk source:
-`repo init -u https://android.googlesource.com/platform/manifest -b ndk-release-r20`
-2. change `__ndk` to `__` in `external/libcxx/include/__config`:
+`repo init -u https://android.googlesource.com/platform/manifest -b ndk-r21d`
+2. Get the code:
+`repo sync -c --no-clone-bundle`
+3. change `__ndk` to `__` in `external/libcxx/include/__config`:
 ```diff
--#define _LIBCPP_NAMESPACE _LIBCPP_CONCAT(__ndk,_LIBCPP_ABI_VERSION)
-+#define _LIBCPP_NAMESPACE _LIBCPP_CONCAT(__,_LIBCPP_ABI_VERSION)
+diff --git a/include/__config b/include/__config
+index 961acdb..b7ce8e3 100644
+--- a/include/__config
++++ b/include/__config
+@@ -127,7 +127,7 @@
+ #define _LIBCPP_CONCAT(_LIBCPP_X,_LIBCPP_Y) _LIBCPP_CONCAT1(_LIBCPP_X,_LIBCPP_Y)
+ 
+ #ifndef _LIBCPP_ABI_NAMESPACE
+-# define _LIBCPP_ABI_NAMESPACE _LIBCPP_CONCAT(__ndk,_LIBCPP_ABI_VERSION)
++# define _LIBCPP_ABI_NAMESPACE _LIBCPP_CONCAT(__,_LIBCPP_ABI_VERSION)
+ #endif
+ 
+ #if __cplusplus < 201103L
 ```
-3. Build the ndk:
+4. Apply this change to `prebuilts/ndk`:
+```diff
+diff --git a/platform/sysroot/usr/include/android/log.h b/platform/sysroot/usr/include/android/log.h
+index 512c7cd..b2c902b 100644
+--- a/platform/sysroot/usr/include/android/log.h
++++ b/platform/sysroot/usr/include/android/log.h
+@@ -131,36 +131,6 @@ int __android_log_vprint(int prio, const char* tag, const char* fmt, va_list ap)
+ void __android_log_assert(const char* cond, const char* tag, const char* fmt, ...)
+     __attribute__((__noreturn__)) __attribute__((__format__(printf, 3, 4)));
+ 
+-/**
+- * Identifies a specific log buffer for __android_log_buf_write()
+- * and __android_log_buf_print().
+- */
+-typedef enum log_id {
+-  LOG_ID_MIN = 0,
+-
+-  /** The main log buffer. This is the only log buffer available to apps. */
+-  LOG_ID_MAIN = 0,
+-  /** The radio log buffer. */
+-  LOG_ID_RADIO = 1,
+-  /** The event log buffer. */
+-  LOG_ID_EVENTS = 2,
+-  /** The system log buffer. */
+-  LOG_ID_SYSTEM = 3,
+-  /** The crash log buffer. */
+-  LOG_ID_CRASH = 4,
+-  /** The statistics log buffer. */
+-  LOG_ID_STATS = 5,
+-  /** The security log buffer. */
+-  LOG_ID_SECURITY = 6,
+-  /** The kernel log buffer. */
+-  LOG_ID_KERNEL = 7,
+-
+-  LOG_ID_MAX,
+-
+-  /** Let the logging function choose the best log target. */
+-  LOG_ID_DEFAULT = 0x7FFFFFFF
+-} log_id_t;
+-
+ /**
+  * Writes the constant string `text` to the log buffer `id`,
+  * with priority `prio` and tag `tag`.
+```
+5. Build the ndk:
 `python ndk/checkbuild.py --no-build-tests`
+6. The build will end up in `out/dist`.
