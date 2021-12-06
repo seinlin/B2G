@@ -23,6 +23,14 @@ and talk to us on Matrix:
 Discuss with Developers:
 
   Discourse: https://discourse.mozilla-community.org/c/b2g-os-participation
+  
+# Build environment
+
+As of today, only Linux hosts are supported.
+
+You can read more about it on the following page :
+
+  https://source.android.com/setup/build/initializing
 
 # Building and running the android-10 emulator x86_64
 
