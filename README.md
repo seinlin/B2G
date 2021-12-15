@@ -89,7 +89,7 @@ More [detail](https://github.com/phhusson/treble_experimentations/wiki) of which
 
 # Re-building your own NDK
 
-Because it's using a different c++ namespace than the AOSP base, we can't use the prebuilt NDK from Google. If you can't use the one built by KaiOS, here are the steps to build your own:
+Because it's using a different c++ namespace than the AOSP base, we can't use the prebuilt NDK from Google. If you can't use [the one built by KaiOS](https://packages.preprod.kaiostech.com/ndk/android-ndk-r21d-linux-x86_64.tar.bz2), here are the steps to build your own:
 1. Download the ndk source:
 `repo init -u https://android.googlesource.com/platform/manifest -b ndk-r21d`
 2. Get the code:
