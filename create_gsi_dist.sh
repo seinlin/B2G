@@ -57,6 +57,8 @@ EOF
 
 chmod +x gsi_dist/gsi/flash.sh
 
+cp out/target/product/$DEVICE_NAME/obj/DATA/sources.xml_intermediates/sources.xml ./gsi_dist/gsi/
+
 cd gsi_dist; tar cf - gsi | xz -v --threads=0 > gsi.tar.xz
 
 echo "==> gsi_dist/gsi.tar.xz is ready!"

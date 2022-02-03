@@ -2,16 +2,18 @@
 
 set -e
 
-rm -rf tmp_dist
-mkdir -p tmp_dist/sargo/images
-mkdir -p tmp_dist/sargo/bin
+rm -rf sargo_dist
+mkdir -p sargo_dist/sargo/images
+mkdir -p sargo_dist/sargo/bin
 
-cp out/target/product/sargo/*.img tmp_dist/sargo/images
-cp out/target/product/sargo/android-info.txt tmp_dist/sargo/images
-cp out/soong/host/linux-x86/bin/fastboot tmp_dist/sargo/bin
-cp out/soong/host/linux-x86/bin/adb tmp_dist/sargo/bin
+source .config
 
-cat << EOF > tmp_dist/sargo/flash.sh
+cp out/target/product/sargo/*.img sargo_dist/sargo/images
+cp out/target/product/sargo/android-info.txt sargo_dist/sargo/images
+cp out/soong/host/linux-x86/bin/fastboot sargo_dist/sargo/bin
+cp out/soong/host/linux-x86/bin/adb sargo_dist/sargo/bin
+
+cat << EOF > sargo_dist/sargo/flash.sh
 #!/bin/sh
 
 # Copyright 2012 The Android Open Source Project
@@ -53,6 +55,10 @@ export ANDROID_PRODUCT_OUT=\$IMG
 fastboot flashall -w
 EOF
 
-chmod +x tmp_dist/sargo/flash.sh
+chmod +x sargo_dist/sargo/flash.sh
 
-cd tmp_dist; tar cf - sargo | xz --extreme --threads=0 > sargo.tar.xz
+cp out/target/product/$DEVICE_NAME/obj/DATA/sources.xml_intermediates/sources.xml ./sargo_dist/sargo/
+
+cd sargo_dist; tar cf - sargo | xz -v --threads=0 > sargo.tar.xz
+
+echo "==> sargo_dist/sargo.tar.xz is ready!"
