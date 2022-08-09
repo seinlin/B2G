@@ -30,8 +30,8 @@ case `uname` in
 	exit -1
 esac
 
-GITREPO=${GITREPO:-"https://github.com/capyloon/manifests"}
-BRANCH=${BRANCH:-master}
+GITREPO=${GITREPO:-"https://github.com/seinlin/manifests"}
+BRANCH=${BRANCH:-emulator-12}
 
 while [ $# -ge 1 ]; do
 	case $1 in
@@ -85,6 +85,17 @@ case "$1" in
 	echo BINSUFFIX=64 >> .tmp-config &&
 	repo_sync emulator-10
 	;;
+"emulator-12-arm")
+	echo PRODUCT_NAME=aosp_arm >> .tmp-config &&
+        echo TARGET_NAME=generic >> .tmp-config &&
+	repo_sync emulator-12
+	;;
+"emulator-12-x86_64")
+	echo PRODUCT_NAME=aosp_x86_64 >> .tmp-config &&
+        echo TARGET_NAME=generic_x86_64 >> .tmp-config &&
+	echo BINSUFFIX=64 >> .tmp-config &&
+	repo_sync emulator-12
+	;;
 "sargo")
 	./download_sargo_vendor.sh &&
 	echo PRODUCT_NAME=aosp_sargo >> .tmp-config &&
@@ -107,6 +118,8 @@ case "$1" in
 	echo Valid devices to configure are:
 	echo - emulator-10-arm
 	echo - emulator-10-x86_64
+	echo - emulator-12-arm
+	echo - emulator-12-x86_64
 	echo - sargo \(Google Pixel 3a\)
 	echo - onyx  \(OnePlus X\)
 	echo - b2g_gsi \(B2G Generic System Images\)
