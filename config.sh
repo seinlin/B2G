@@ -5,8 +5,8 @@ sync_flags=""
 
 repo_sync() {
 	rm -rf .repo/manifest* &&
-	$REPO init -u $GITREPO -b $BRANCH -m $1.xml $REPO_INIT_FLAGS &&
-	$REPO sync $sync_flags $REPO_SYNC_FLAGS
+	$REPO init -u $GITREPO -b $BRANCH -m $1.xml $REPO_INIT_FLAGS
+	# && $REPO sync $sync_flags $REPO_SYNC_FLAGS
 	ret=$?
 	if [ "$GITREPO" = "$GIT_TEMP_REPO" ]; then
 		rm -rf $GIT_TEMP_REPO
@@ -108,6 +108,11 @@ case "$1" in
 	echo TARGET_NAME=onyx  >> .tmp-config &&
 	repo_sync $1
 	;;
+"bluejay")
+	echo PRODUCT_NAME=aosp_bluejay  >> .tmp-config &&
+	echo TARGET_NAME=bluejay  >> .tmp-config &&
+	repo_sync $1
+	;;
 "b2g_gsi")
 	repo_sync gsi
 	;;	
@@ -122,6 +127,7 @@ case "$1" in
 	echo - emulator-12-x86_64
 	echo - sargo \(Google Pixel 3a\)
 	echo - onyx  \(OnePlus X\)
+	echo - bluejay \(Google Pixel 6a\)
 	echo - b2g_gsi \(B2G Generic System Images\)
 	exit -1
 	;;
