@@ -97,6 +97,11 @@ case "$1" in
 	echo TARGET_NAME=onyx  >> .tmp-config &&
 	repo_sync $1
 	;;
+"bluejay")
+	echo PRODUCT_NAME=aosp_bluejay  >> .tmp-config &&
+	echo TARGET_NAME=bluejay  >> .tmp-config &&
+	repo_sync $1
+	;;
 "b2g_gsi")
 	repo_sync gsi
 	;;	
@@ -109,6 +114,7 @@ case "$1" in
 	echo - emulator-10-x86_64
 	echo - sargo \(Google Pixel 3a\)
 	echo - onyx  \(OnePlus X\)
+	echo - bluejay \(Google Pixel 6a\)
 	echo - b2g_gsi \(B2G Generic System Images\)
 	exit -1
 	;;
