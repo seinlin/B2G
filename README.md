@@ -90,6 +90,7 @@ More [detail](https://github.com/phhusson/treble_experimentations/wiki) of which
 ## Pixel 6a (bluejay)
 
 The `bluejay` build is based on Android 13, which uses the Android NDK r25b. Here are the steps to follow for this device:
+- Make sure your device is up to date: ***Read https://developers.google.com/android/images#updating_pixel_6_pixel_6_pro_and_pixel_6a_devices_to_android_13_for_the_first_time first!***
 - Download the new patched NDK from https://bafybeics7ghfvyvjaumpr6j7vvn47d62yi5o4iaa7do3zbeyhkrjkanxia.ipfs.cf-ipfs.com/android-ndk-0-linux-x86_64.zip and install it in your `$HOME/.mozbuild` directory.
 - Run this command to workaround a Rust toolchain issue (see https://github.com/godot-rust/godot-rust/pull/920/files):
 ```shell
