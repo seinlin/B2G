@@ -39,3 +39,7 @@ vendor/
 b2g_sdk/
 tmp_dist/
 patcher/
+tools/
+nutria/
+iroh/
+*_dist/

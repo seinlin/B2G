@@ -87,6 +87,19 @@ More [detail](https://github.com/phhusson/treble_experimentations/wiki) of which
 
 5. Flash: Follow the steps from [click it](https://source.android.com/setup/build/gsi#flashing-gsis) or use the `./create_gsi_dist.sh` script to create a self-contained archive with the image and flashing tools.
 
+## Pixel 6a (bluejay)
+
+The `bluejay` build is based on Android 13, which uses the Android NDK r25b. Here are the steps to follow for this device:
+- Download the new patched NDK from https://bafybeics7ghfvyvjaumpr6j7vvn47d62yi5o4iaa7do3zbeyhkrjkanxia.ipfs.cf-ipfs.com/android-ndk-0-linux-x86_64.zip and install it in your `$HOME/.mozbuild` directory.
+- Run this command to workaround a Rust toolchain issue (see https://github.com/godot-rust/godot-rust/pull/920/files):
+```shell
+find -L ${BUILD_WITH_NDK_DIR} -name libunwind.a -execdir sh -c 'echo "INPUT(-lunwind)" > libgcc.a' \;)
+```
+- Configure your build with `./config.sh bluejay`
+- Build with `./build.sh <target>`
+
+To flash your build, you can create a distributable archive with `./create_bluejay_dist.sh` and run the `flash.sh` script it contains. This is Linux-only for now.
+
 # Re-building your own NDK
 
 Because it's using a different c++ namespace than the AOSP base, we can't use the prebuilt NDK from Google. If you can't use [the one built by KaiOS](https://packages.preprod.kaiostech.com/ndk/android-ndk-r21d-linux-x86_64.tar.bz2), here are the steps to build your own:
